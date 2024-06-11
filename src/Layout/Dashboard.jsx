@@ -4,7 +4,7 @@ const Dashboard = () => {
     return (
         <div>
             <Sidebar/>
-            <div className='container mx-auto px-10 md:px-40'>
+            <div className='container px-10 ml-64'>
                 <Outlet/>
             </div>
         </div>

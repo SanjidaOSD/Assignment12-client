@@ -56,6 +56,10 @@ export const router = createBrowserRouter([
         path: 'add-pet',
         element: <AddPet />
       },
+      {
+        path: 'my-added-pets',
+        element: <AddPet />
+      },
 
       // ====== Admin Routes ========
       {
