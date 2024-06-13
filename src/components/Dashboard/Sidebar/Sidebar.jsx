@@ -8,6 +8,7 @@ import useAdmin from '../../../Hook/useAdmin'
 import { ImSpinner } from 'react-icons/im';
 import { BiSolidDonateHeart } from "react-icons/bi";
 import { MdPets } from "react-icons/md";
+import { IoArrowUndoOutline } from "react-icons/io5";
 
 
 
@@ -132,7 +133,7 @@ const Sidebar = () => {
                                                 }`
                                             }
                                         >
-                                            <span className='mx-4 font-medium flex items-center gap-3'> <FiPlusCircle /> Adoption Request
+                                            <span className='mx-4 font-medium flex items-center gap-3'> <IoArrowUndoOutline /> Adoption Request
                                             </span>
                                         </NavLink>
                                         <NavLink

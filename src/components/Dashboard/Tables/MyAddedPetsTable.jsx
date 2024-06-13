@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom';
 
-const MyAddedPetsTable = ({ myAddedPets }) => {
+const MyAddedPetsTable = ({ myAddedPets, handlePetDelete, handleAdoptions }) => {
 
     const columns = [
         {
@@ -39,11 +39,10 @@ const MyAddedPetsTable = ({ myAddedPets }) => {
             name: 'Actions',
             selector: (pet) => <div>
                 <Link to={`/dashboard/pet-update/${pet._id}`}><Button className='px-5 py-2 mr-2'>Update</Button></Link>
-                <Button className='px-5 py-2 mr-2'>Delete</Button>
-                <Button className='px-5 py-2 mr-2'>Adopted</Button>
+                <Button onClick={()=>handlePetDelete(pet._id)} className='px-5 py-2 mr-2'>Delete</Button>
+                <Button onClick={()=>handleAdoptions(pet._id)} className='px-5 py-2 mr-2'>Adopted</Button>
             </div>,
             minWidth : "400px"
-            
         },
     ]
 
@@ -58,6 +57,9 @@ const MyAddedPetsTable = ({ myAddedPets }) => {
 
 MyAddedPetsTable.propTypes = {
     myAddedPets: PropTypes.array,
+    handlePetDelete: PropTypes.func,
+    handleAdoptions: PropTypes.func,
+
 };
 
 export default MyAddedPetsTable;
