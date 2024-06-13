@@ -6,18 +6,40 @@ import MyAddedPetsTable from "../../../../components/Dashboard/Tables/MyAddedPet
 
 const MyAddedPets = () => {
 
-    const {user} = UseAuth()
+    const { user } = UseAuth()
     const axiosSecure = useAxiosSecure()
-    const {data : myAddedPets = [], isLoading} = useQuery({
-        queryKey : ['myAddedPets'],
-        enabled : !!user,
-        queryFn : async()=>{
-            const {data} = await axiosSecure(`/my-added-pets/${user?.email}`)
+    const { data: myAddedPets = [], refetch } = useQuery({
+        queryKey: ['myAddedPets'],
+        enabled: !!user,
+        queryFn: async () => {
+            const { data } = await axiosSecure(`/my-added-pets/${user?.email}`)
             return data;
         }
     })
 
-    console.log(myAddedPets, isLoading);
+    const handleCampDelete = (id) => {
+        Swal.fire({
+            title: "Confirm your deletation",
+            text: "You won't be able to revert this!",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Delete"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const { data } = await axiosSecure.delete(`/camp/${id}`)
+                    if (data.deletedCount > 0) {
+                        refetch()
+                        toast.success(`Camp Deleted Succefully`)
+                    }
+                } catch (err) {
+                    toast.error('Camp Delete Failed')
+                }
+            }
+        });
+        close()
+    }
 
     return (
         <div>
@@ -26,7 +48,7 @@ const MyAddedPets = () => {
             </Helmet>
             <h1 className="text-2xl font-semibold text-center pt-16 pb-10">My Added Pet</h1>
             <div>
-                <MyAddedPetsTable myAddedPets={myAddedPets}/>
+                <MyAddedPetsTable myAddedPets={myAddedPets} />
             </div>
         </div>
     );

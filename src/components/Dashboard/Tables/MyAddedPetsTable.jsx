@@ -1,8 +1,9 @@
 import { Button } from '@material-tailwind/react';
 import PropTypes from 'prop-types';
 import DataTable from 'react-data-table-component';
+import { Link } from 'react-router-dom';
 
-const MyAddedPetsTable = ({myAddedPets}) => {
+const MyAddedPetsTable = ({ myAddedPets }) => {
 
     const columns = [
         {
@@ -25,7 +26,7 @@ const MyAddedPetsTable = ({myAddedPets}) => {
         },
         {
             name: 'Pet Image',
-            selector: (pet) => <img className='w-12 my-2 rounded-md' src={pet.petImage} alt="Pet Image" />,
+            selector: (pet) => <img className='w-12 h-8 object-cover my-2 rounded-md' src={pet.petImageURL} alt="Pet Image" />,
             sortable: true,
             maxWidth: "120px",
         },
@@ -37,20 +38,21 @@ const MyAddedPetsTable = ({myAddedPets}) => {
         {
             name: 'Actions',
             selector: (pet) => <div>
-                <Button className='px-5 py-2 mr-2'>Update</Button>
+                <Link to={`/dashboard/pet-update/${pet._id}`}><Button className='px-5 py-2 mr-2'>Update</Button></Link>
                 <Button className='px-5 py-2 mr-2'>Delete</Button>
                 <Button className='px-5 py-2 mr-2'>Adopted</Button>
             </div>,
-            width : "400px"
+            minWidth : "400px"
+            
         },
     ]
 
     return (
-         <DataTable columns={columns}
-         data={myAddedPets}
-        highlightOnHover
-        pagination
-        persistTableHead />
+        <DataTable columns={columns}
+            data={myAddedPets}
+            highlightOnHover
+            pagination
+            persistTableHead />
     );
 };
 

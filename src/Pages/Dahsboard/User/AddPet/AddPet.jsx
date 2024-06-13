@@ -19,7 +19,7 @@ const AddPet = () => {
         try {
             const petImageURL = await uploadImage(petImage[0])
             console.log(petImageURL);
-            const newPet = { petName, petCategory, petAge, petLocation, shortDescription, longDescription, date: date, adopted: false, email: user?.email, petImage : petImageURL}
+            const newPet = { petName, petCategory, petAge, petLocation, shortDescription, longDescription, date: date, adopted: false, email: user?.email, petImageURL}
             const {data}  = await axiosSecure.post('/pet', newPet)
             if (data.insertedId) {
                 toast.success("Pet added successfully")

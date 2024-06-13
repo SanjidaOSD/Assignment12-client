@@ -12,6 +12,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AddPet from "../Pages/Dahsboard/User/AddPet/AddPet";
 import Users from "../Pages/Dahsboard/Admin/Users/Users";
 import MyAddedPets from "../Pages/Dahsboard/User/MyAddedPets/MyAddedPets";
+import PetUpdate from "../Pages/Dahsboard/User/PetUpdate/PetUpdate";
 
 
 export const router = createBrowserRouter([
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
       {
         path: 'my-added-pets',
         element: <MyAddedPets/>
+      },
+      {
+        path: 'pet-update/:id',
+        element: <PetUpdate/>
       },
 
       // ====== Admin Routes ========
