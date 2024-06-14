@@ -8,12 +8,14 @@ import UseAuth from "../../Hook/UseAuth";
 import { Button } from "@material-tailwind/react";
 import { DialogPanel, Dialog, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../Hook/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const PetDetails = () => {
     const { id } = useParams()
     const { user, loading } = UseAuth()
-
-    let [isOpen, setIsOpen] = useState(true)
+    const axiosSecure = useAxiosSecure()
+    let [isOpen, setIsOpen] = useState(false)
     const [petData, isLoading] = usePetDetailsByID(id)
     const { _id, petName, petCategory, petAge, petLocation, shortDescription, longDescription, adopted, petImageURL } = petData || {};
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -28,11 +30,19 @@ const PetDetails = () => {
 
     const handleAdopt = async (data) => {
         const newAdoptRequest = {
-            petId : _id,
-            petName : petName,
+            petId: _id,
+            petName: petName,
             ...data
         }
-        console.log(newAdoptRequest);
+
+        try {
+            const { data } = await axiosSecure.post('/adopt-request', newAdoptRequest)
+            if (data.insertedId) {
+                toast.success("Request submitted successfully.")
+            }
+        } catch (err) {
+            toast.success("Request submit failed.")
+        }
     }
 
     if (isLoading || loading) {
