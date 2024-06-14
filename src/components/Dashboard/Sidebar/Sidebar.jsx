@@ -9,6 +9,8 @@ import { ImSpinner } from 'react-icons/im';
 import { BiSolidDonateHeart } from "react-icons/bi";
 import { MdPets } from "react-icons/md";
 import { IoArrowUndoOutline } from "react-icons/io5";
+import { LuFileEdit } from "react-icons/lu";
+import { MdFormatListBulleted } from "react-icons/md";
 
 
 
@@ -127,7 +129,7 @@ const Sidebar = () => {
                                             <span className='mx-4 font-medium flex items-center gap-3'> <MdPets /> My Added Pets</span>
                                         </NavLink>
                                         <NavLink
-                                            to='/dashboard/add-pet'
+                                            to='/dashboard/adoption-request'
                                             className={({ isActive }) =>
                                                 `flex items-center px-4 py-2 my-1  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
                                                 }`
@@ -137,23 +139,23 @@ const Sidebar = () => {
                                             </span>
                                         </NavLink>
                                         <NavLink
-                                            to='/dashboard/add-pet'
+                                            to='/dashboard/create-campaign'
                                             className={({ isActive }) =>
                                                 `flex items-center px-4 py-2 my-1  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
                                                 }`
                                             }
                                         >
-                                            <span className='mx-4 font-medium flex items-center gap-3'> <FiPlusCircle /> Create Campaign
+                                            <span className='mx-4 font-medium flex items-center gap-3'> <LuFileEdit /> Create Campaign
                                             </span>
                                         </NavLink>
                                         <NavLink
-                                            to='/dashboard/add-pet'
+                                            to='/dashboard/my-campaign'
                                             className={({ isActive }) =>
                                                 `flex items-center px-4 py-2 my-1  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
                                                 }`
                                             }
                                         >
-                                            <span className='mx-4 font-medium flex items-center gap-3'> <FiPlusCircle /> My Campaigns
+                                            <span className='mx-4 font-medium flex items-center gap-3'> <MdFormatListBulleted /> My Campaigns
                                             </span>
                                         </NavLink>
                                         <NavLink

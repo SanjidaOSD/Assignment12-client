@@ -15,7 +15,8 @@ const AddPet = () => {
 
     const handleAddPet = async (data) => {
         const {petName, petCategory, petAge, petLocation, petImage, shortDescription, longDescription} = data;
-        const date = new Date().toLocaleDateString();
+        const date = new Date().toLocaleDateString(); 
+        
         try {
             const petImageURL = await uploadImage(petImage[0])
             console.log(petImageURL);

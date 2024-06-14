@@ -13,6 +13,11 @@ import AddPet from "../Pages/Dahsboard/User/AddPet/AddPet";
 import Users from "../Pages/Dahsboard/Admin/Users/Users";
 import MyAddedPets from "../Pages/Dahsboard/User/MyAddedPets/MyAddedPets";
 import PetUpdate from "../Pages/Dahsboard/User/PetUpdate/PetUpdate";
+import AdoptionRequest from "../Pages/Dahsboard/User/AdoptionRequest/AdoptionRequest";
+import CreateCampaign from "../Pages/Dahsboard/User/CreateCampaign/CreateCampaign";
+import MyCampaign from "../Pages/Dahsboard/User/MyCampaign/MyCampaign";
+import Petlisting from "../Pages/PetListing/Petlisting";
+import PetDetails from "../Pages/PetDetails/PetDetails";
 
 
 export const router = createBrowserRouter([
@@ -47,6 +52,14 @@ export const router = createBrowserRouter([
         path: '/signUp',
         element: <SignUp></SignUp>,
       },
+      {
+        path: '/pet-listing',
+        element: <Petlisting/>
+      },
+      {
+        path: '/pet-details/:id',
+        element: <PetDetails/>
+      },
     ]
   },
   {
@@ -60,17 +73,29 @@ export const router = createBrowserRouter([
       },
       {
         path: 'my-added-pets',
-        element: <MyAddedPets/>
+        element: <MyAddedPets />
       },
       {
         path: 'pet-update/:id',
-        element: <PetUpdate/>
+        element: <PetUpdate />
+      },
+      {
+        path: 'adoption-request',
+        element: <AdoptionRequest/>
+      },
+      {
+        path: 'create-campaign',
+        element: <CreateCampaign/>
+      },
+      {
+        path: 'my-campaign',
+        element: <MyCampaign/>
       },
 
       // ====== Admin Routes ========
       {
         path: 'users',
-        element: <Users/>
+        element: <Users />
       },
 
     ]
