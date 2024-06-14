@@ -32,6 +32,7 @@ const PetDetails = () => {
         const newAdoptRequest = {
             petId: _id,
             petName: petName,
+            status : 'pending',
             ...data
         }
 
@@ -103,17 +104,17 @@ const PetDetails = () => {
                                                     </div>
                                                     <form onSubmit={handleSubmit(handleAdopt)} className="block w-full mx-auto font-semibold">
                                                         <label htmlFor="userName" className="mt-3 block"> User Name : </label>
-                                                        <input disabled value={user?.displayName} className="block border w-full px-5 py-2 mt-1" type="text" placeholder="User Name" name="userName"{...register("userName")} />
+                                                        <input value={user?.displayName} className="block border w-full px-5 py-2 mt-1" type="text" placeholder="User Name" name="userName"{...register("userName")} />
 
-                                                        <label htmlFor="userName" className="mt-3 block"> User Email : </label>
-                                                        <input disabled value={user?.email} className="block border w-full px-5 py-2 mt-1" type="text" placeholder="User Email" name="userEmail"{...register("userEmail")} />
+                                                        <label htmlFor="userEmail" className="mt-3 block"> User Email : </label>
+                                                        <input value={user?.email} className="block border w-full px-5 py-2 mt-1" type="text" placeholder="User Email" name="userEmail"{...register("userEmail")} />
 
                                                         <label htmlFor="userPhone" className="mt-3 block"> User Phone : </label>
-                                                        <input className="block border w-full px-5 py-2 mt-1" type="text" placeholder="User Email" name="userPhone"{...register("userPhone", { required: true })} />
+                                                        <input className="block border w-full px-5 py-2 mt-1" type="text" placeholder="User phone" name="userPhone"{...register("userPhone", { required: true })} />
                                                         {errors.userPhone && <span className="text-red-500">This field is required</span>}
 
                                                         <label htmlFor="userAddress" className="mt-3 block"> User Address : </label>
-                                                        <input className="block border w-full px-5 py-2 mt-1" type="text" placeholder="User Email" name="userAddress"{...register("userAddress", { required: true })} />
+                                                        <input className="block border w-full px-5 py-2 mt-1" type="text" placeholder="User address" name="userAddress"{...register("userAddress", { required: true })} />
                                                         {errors.userAddress && <span className="text-red-500">This field is required</span>}
                                                         <div className="mt-4 flex justify-center">
                                                             <Button
