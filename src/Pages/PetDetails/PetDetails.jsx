@@ -5,15 +5,18 @@ import { Helmet } from "react-helmet";
 import { GrLocation } from 'react-icons/gr';
 import { useState } from "react";
 import UseAuth from "../../Hook/UseAuth";
-import { toast } from "react-toastify";
-import AdoptModal from "../../components/AdoptModal/AdoptModal";
+import { Button } from "@material-tailwind/react";
+import { DialogPanel, Dialog, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
+import { useForm } from "react-hook-form";
 
 const PetDetails = () => {
     const { id } = useParams()
     const { user, loading } = UseAuth()
-    const [isOpen, setIsOpen] = useState(false)
+
+    let [isOpen, setIsOpen] = useState(true)
     const [petData, isLoading] = usePetDetailsByID(id)
-    const { petName, petCategory, petAge, petLocation, shortDescription, longDescription, adopted, petImageURL } = petData || {};
+    const { _id, petName, petCategory, petAge, petLocation, shortDescription, longDescription, adopted, petImageURL } = petData || {};
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     function open() {
         setIsOpen(true)
@@ -24,16 +27,15 @@ const PetDetails = () => {
     }
 
     const handleAdopt = async (data) => {
-        console.log(data);
-        // try {
-        //     close()
-        //     toast.success("Adopeted Successfully")
-        // } catch (err) {
-        //     toast.error("Adopt Failed")
-        // }
+        const newAdoptRequest = {
+            petId : _id,
+            petName : petName,
+            ...data
+        }
+        console.log(newAdoptRequest);
     }
 
-    if (isLoading) {
+    if (isLoading || loading) {
         return <div className="flex justify-center items-center mt-10"><ImSpinner className="text-3xl animate-spin text-center text-green-500" /></div>
     }
 
@@ -64,7 +66,62 @@ const PetDetails = () => {
                         <button onClick={open} className='w-[120px] block mt-5 hover:text-white hover:bg-gray-700 duration-300 bg-gray-200 px-5 text-center py-2 rounded-lg text-lg font-semibold'> Adopt </button>
                     </div>
                     <div>
-                        <AdoptModal isOpen={isOpen} user={user} isUserLoading={loading} petData={petData} close={close} handleAdopt={handleAdopt}/>
+                        <Transition appear show={isOpen}>
+                            <Dialog as="div" className="relative z-10 focus:outline-none" onClose={close}>
+                                <div className="fixed inset-0 z-10 w-screen overflow-y-auto bg-black bg-opacity-40">
+                                    <div className="flex min-h-full items-center justify-center p-4">
+                                        <TransitionChild
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0 transform-[scale(95%)]"
+                                            enterTo="opacity-100 transform-[scale(100%)]"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100 transform-[scale(100%)]"
+                                            leaveTo="opacity-0 transform-[scale(95%)]"
+                                        >
+                                            <DialogPanel className="w-full max-w-md rounded-xl bg-white p-6 ">
+                                                <DialogTitle as="h3" className="text-2xl font-semibold text-center text-gray-700">
+                                                    Adopt - {petName}
+                                                </DialogTitle>
+                                                <div>
+                                                    <div>
+                                                        <div className="mt-5">
+                                                            <img className="w-full h-[160px] object-cover rounded-lg" src={petImageURL} alt="Pet Image" />
+                                                        </div>
+                                                        <div className="w-full bg-gray-50 rounded-lg">
+                                                            <h2 className="text-2xl font-semibold mt-3">Pet Name - {petName}</h2>
+                                                        </div>
+                                                    </div>
+                                                    <form onSubmit={handleSubmit(handleAdopt)} className="block w-full mx-auto font-semibold">
+                                                        <label htmlFor="userName" className="mt-3 block"> User Name : </label>
+                                                        <input disabled value={user?.displayName} className="block border w-full px-5 py-2 mt-1" type="text" placeholder="User Name" name="userName"{...register("userName")} />
+
+                                                        <label htmlFor="userName" className="mt-3 block"> User Email : </label>
+                                                        <input disabled value={user?.email} className="block border w-full px-5 py-2 mt-1" type="text" placeholder="User Email" name="userEmail"{...register("userEmail")} />
+
+                                                        <label htmlFor="userPhone" className="mt-3 block"> User Phone : </label>
+                                                        <input className="block border w-full px-5 py-2 mt-1" type="text" placeholder="User Email" name="userPhone"{...register("userPhone", { required: true })} />
+                                                        {errors.userPhone && <span className="text-red-500">This field is required</span>}
+
+                                                        <label htmlFor="userAddress" className="mt-3 block"> User Address : </label>
+                                                        <input className="block border w-full px-5 py-2 mt-1" type="text" placeholder="User Email" name="userAddress"{...register("userAddress", { required: true })} />
+                                                        {errors.userAddress && <span className="text-red-500">This field is required</span>}
+                                                        <div className="mt-4 flex justify-center">
+                                                            <Button
+                                                                type="submit"
+                                                                className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-2 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+                                                                onClick={close}
+                                                            >
+                                                                Submit
+                                                            </Button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </DialogPanel>
+                                        </TransitionChild>
+                                    </div>
+                                </div>
+                            </Dialog>
+                        </Transition>
                     </div>
                 </div>
             </div>
