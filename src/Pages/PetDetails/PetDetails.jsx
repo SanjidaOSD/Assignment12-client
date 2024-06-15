@@ -55,10 +55,10 @@ const PetDetails = () => {
             <Helmet>
                 <title>Pet Details | Pet House</title>
             </Helmet>
-            <h1 className="text-2xl font-semibold text-center pt-16 pb-8">Pet Details of {petName}</h1>
+            <h1 className="text-2xl font-semibold text-center pt-5 pb-8">Pet Details of {petName}</h1>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 pb-16">
                 <div>
-                    <img className="w-full h-auto object-cover rounded-lg" src={petImageURL} alt="Pet Image" />
+                    <img className="w-full h-full object-cover rounded-lg" src={petImageURL} alt="Pet Image" />
                 </div>
                 <div className="w-full bg-gray-50 rounded-lg p-10">
                     <h2 className="text-2xl font-semibold">Pet Name : {petName}</h2>

@@ -79,7 +79,7 @@ const Menubar = () => {
                                 color="blue-gray"
                                 className="p-1 font-medium"
                             >
-                                <NavLink to={'/donation-campaingns'} className="flex items-center hover:text-red-500 border-b-2 border-transparent font-semibold transition-colors">
+                                <NavLink to={'/donation-campaigns'} className="flex items-center hover:text-red-500 border-b-2 border-transparent font-semibold transition-colors">
                                     Donation Campaigns
                                 </NavLink>
                             </Typography>

@@ -27,7 +27,7 @@ const Petlisting = () => {
             <Helmet>
                 <title>Pet Listing | Pet House</title>
             </Helmet>
-            <h1 className="text-2xl font-semibold text-center pt-16 pb-8">Pet Listing</h1>
+            <h1 className="text-2xl font-semibold text-center pt-5 pb-8">Pet Listing</h1>
             <div className="pb-8">
                 <form action="" className="flex w-full justify-center items-center gap-5">
                     <div>

@@ -66,7 +66,6 @@ const AdoptionRequest = () => {
         return <div className="flex justify-center items-center mt-10"><ImSpinner className="text-3xl animate-spin text-center text-green-500" /></div>
     }
 
-
     return (
         <div>
             <Helmet>

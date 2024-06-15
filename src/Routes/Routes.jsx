@@ -18,6 +18,9 @@ import CreateCampaign from "../Pages/Dahsboard/User/CreateCampaign/CreateCampaig
 import MyCampaign from "../Pages/Dahsboard/User/MyCampaign/MyCampaign";
 import Petlisting from "../Pages/PetListing/Petlisting";
 import PetDetails from "../Pages/PetDetails/PetDetails";
+import DonationCampaigns from "../Pages/DonationCampaigns/DonationCampaigns";
+import CampaignDetails from "../Pages/CampaignDetails/CampaignDetails";
+import MyDonations from "../Pages/Dahsboard/User/MyDonations/MyDonations";
 
 
 export const router = createBrowserRouter([
@@ -57,8 +60,16 @@ export const router = createBrowserRouter([
         element: <Petlisting/>
       },
       {
+        path: '/donation-campaigns',
+        element: <DonationCampaigns/>
+      },
+      {
         path: '/pet-details/:id',
         element: <PetDetails/>
+      },
+      {
+        path: '/campaign-details/:id',
+        element: <CampaignDetails/>
       },
     ]
   },
@@ -90,6 +101,10 @@ export const router = createBrowserRouter([
       {
         path: 'my-campaign',
         element: <MyCampaign/>
+      },
+      {
+        path: 'my-donations',
+        element: <MyDonations/>
       },
 
       // ====== Admin Routes ========
