@@ -11,11 +11,15 @@ import { MdPets } from "react-icons/md";
 import { IoArrowUndoOutline } from "react-icons/io5";
 import { LuFileEdit } from "react-icons/lu";
 import { MdFormatListBulleted } from "react-icons/md";
+import { FaUsers } from "react-icons/fa";
+import { MdOutlinePets } from "react-icons/md";
+import UseAuth from '../../../Hook/UseAuth'
 
 
 
 const Sidebar = () => {
     const [isActive, setActive] = useState(false)
+    const {logout} = UseAuth()
     const [isAdmin, isAdminLoading] = useAdmin()
     const handleToggle = () => {
         setActive(!isActive)
@@ -86,7 +90,7 @@ const Sidebar = () => {
                                                 }`
                                             }
                                         >
-                                            <span className='mx-4 font-medium flex items-center gap-3'> <FiPlusCircle /> Users</span>
+                                            <span className='mx-4 font-medium flex items-center gap-3'> <FaUsers /> Users</span>
                                         </NavLink>
                                         <NavLink
                                             to='/dashboard/all-pets'
@@ -95,7 +99,7 @@ const Sidebar = () => {
                                                 }`
                                             }
                                         >
-                                            <span className='mx-4 font-medium flex items-center gap-3'> <FiPlusCircle /> All Pets</span>
+                                            <span className='mx-4 font-medium flex items-center gap-3'> <MdOutlinePets /> All Pets</span>
                                         </NavLink>
                                         <NavLink
                                             to='/dashboard/all-donations'
@@ -104,7 +108,7 @@ const Sidebar = () => {
                                                 }`
                                             }
                                         >
-                                            <span className='mx-4 font-medium flex items-center gap-3'> <FiPlusCircle /> All Donations</span>
+                                            <span className='mx-4 font-medium flex items-center gap-3'> <BiSolidDonateHeart /> All Donations</span>
                                         </NavLink>
                                     </>
                                     :
@@ -190,7 +194,7 @@ const Sidebar = () => {
                         <span className='mx-4 font-medium'>Home</span>
                     </NavLink>
                     <NavLink
-                        to='/'
+                        to='/pet-listing'
                         className={({ isActive }) =>
                             `flex items-center px-4 py-2 my-1  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
                             }`
@@ -201,7 +205,7 @@ const Sidebar = () => {
                         <span className='mx-4 font-medium'>Pet Listing</span>
                     </NavLink>
                     <NavLink
-                        to='/'
+                        to='/donation-campaigns'
                         className={({ isActive }) =>
                             `flex items-center px-4 py-2 my-1  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
                             }`
@@ -212,6 +216,7 @@ const Sidebar = () => {
                         <span className='mx-4 font-medium'>Donation Campaign</span>
                     </NavLink>
                     <button
+                        onClick={logout}
                         className='flex w-full items-center px-4 py-2 mt-1 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'
                     >
                         <GrLogout className='w-5 h-5' />

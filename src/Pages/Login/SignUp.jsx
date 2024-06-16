@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { Helmet } from "react-helmet";
 import UseAuth from "../../Hook/UseAuth";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
+import { Button } from "@material-tailwind/react";
 
 const SignUp = () => {
     const axiosPublic = useAxiosPublic()
@@ -59,6 +60,7 @@ const SignUp = () => {
                 const userInfo = {
                     email: result.user?.email,
                     name: result.user?.displayName,
+                    photo: result.user?.photoURL,
                     role: 'user'
                 }
                 axiosPublic.post('/users', userInfo)
@@ -79,50 +81,51 @@ const SignUp = () => {
     }
 
     return (
-        <div>
+        <div className="pb-20">
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>Register</title>
                 <link rel="canonical" href="http://mysite.com/example" />
             </Helmet>
             <h2 className="text-3xl text-center mt-6 mb-6 font-bold text-red-700">Please Register</h2>
-            <div className="card shrink-0 w-full max-w-sm mx-auto shadow-2xl bg-base-100">
+            <div className="card shrink-0 w-full max-w-sm mx-auto shadow-2xl bg-base-100 p-10 rounded-xl">
                 <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                     <div className="form-control">
-                        <label className="label">
+                        <label className="label mt-5 block">
                             <span className="label-text">Name</span>
                         </label>
-                        <input type="name" placeholder="name" name="name" className="input input-bordered  bg-red-200"
+                        <input type="name" placeholder="name" name="name" className="px-5 w-full py-2 mt-1 block border border-gray-100"
                             {...register("name", { required: true })}
                         />
                         {errors.name && <span className="text-red-800">This field is required</span>}
                     </div>
                     <div className="form-control">
-                        <label className="label">
+                        <label className="label mt-5 block">
                             <span className="label-text">Photo URL</span>
                         </label>
-                        <input type="photo" placeholder="photo" name="photo" className="input input-bordered  bg-red-200"
+                        <input type="photo" placeholder="photo" name="photo" className="px-5 w-full py-2 mt-1 block border border-gray-100"
                             {...register("photo")}
                         />
+                        {errors.photo && <span className="text-red-800">This field is required</span>}
                     </div>
                     <div className="form-control">
-                        <label className="label">
+                        <label className=" mt-5 block">
                             <span className="label-text">Email</span>
                         </label>
-                        <input type="email" placeholder="email" name="email" className="input input-bordered  bg-red-200"
+                        <input type="email" placeholder="email" name="email" className="px-5 w-full py-2 mt-1 block border border-gray-100"
                             {...register("email", { required: true })}
                         />
                         {errors.email && <span className="text-red-800">This field is required</span>}
                     </div>
                     <div className="form-control">
-                        <label className="label">
+                        <label className="label mt-5 block">
                             <span className="label-text">Password</span>
                         </label>
                         <div className="relative">
                             <input
                                 type={showPassword ? "text" : "password"}
                                 placeholder="password" name="password"
-                                className="input input-bordered w-full bg-red-200"
+                                className="input input-bordered w-full px-5 py-2 mt-1 block border border-gray-100"
                                 {...register("password", { required: true })}
                             />
                             <span className="absolute top-4 right-3" onClick={() => setShowPassword(!showPassword)}>
@@ -132,16 +135,16 @@ const SignUp = () => {
                             </span>
                             {errors.password && <span className="text-red-800">This field is required</span>}
                         </div>
-                        <label className="label">
+                        <label className="label mt-5 block">
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                         </label>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 mt-5">
                         <input type="checkbox" name="terms" id="terms" />
                         <label htmlFor="terms">Accept our terms and condition</label>
                     </div>
-                    <div className="form-control mt-6">
-                        <button className="btn btn-primary hover:bg-red-800 hover:text-white  bg-red-700">Register</button>
+                    <div className="form-control mt-6 flex justify-center items-center">
+                        <Button className="" type="submit">Register</Button>
                     </div>
                 </form>
                 {

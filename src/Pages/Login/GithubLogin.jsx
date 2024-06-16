@@ -15,7 +15,6 @@ const Github = () => {
   const handleGithubLogin = socialProvider => {
     socialProvider()
       .then(result => {
-        // console.log(result.user)
         if (result.user) {
           navigate(from)
         }

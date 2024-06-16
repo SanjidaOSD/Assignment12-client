@@ -81,6 +81,8 @@ const FirebaseProvider = ({ children }) => {
         }
     }, [axiosPublic])
 
+    // TODO : Impliment Update user (Username and Photo in navbar not working)
+
     // console.log(user)
     const allValues = {
         user,
