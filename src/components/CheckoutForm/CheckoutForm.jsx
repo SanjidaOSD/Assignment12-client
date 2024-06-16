@@ -27,6 +27,10 @@ const CheckoutForm = ({ amount, campaignData }) => {
             })
     }, [axiosSecure, amount])
 
+
+    // TODO :Solve an error issue (App Crushed when payment failed)
+
+
     const handlePaymentSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
@@ -71,7 +75,21 @@ const CheckoutForm = ({ amount, campaignData }) => {
                 if (paymentIntent?.status === 'succeeded') {
                     setTransectionId(paymentIntent?.id)
                     const paidAmount = paymentIntent.amount / 100;
-                    console.log("Paid : ", paidAmount);
+                    // Update campain data for donated amount and donators data
+                    const previousDonated = parseInt(campaignData.totalDonatedAmount)
+                    const newDonated = parseInt(amount)
+                    const updatedData = {
+                        totalDonatedAmount : previousDonated + newDonated,
+                        donators : [...campaignData.donators, {
+                            name : user.displayName,
+                            email : user.email,
+                            photo : user.photoURL,
+                            donatedAmount : newDonated
+                        }]
+                    }
+                    await axiosSecure.patch(`/payment-update-campaign/${campaignData._id}`, updatedData)
+                    
+                    // Post data to payment collection
                     const newPaymentData = {
                         userName: user?.displayName,
                         userEmail: user?.email,
@@ -83,7 +101,7 @@ const CheckoutForm = ({ amount, campaignData }) => {
                     }
                     await axiosSecure.post("/donation-payment", newPaymentData)
                     toast.success("Payment Success")
-                } else{
+                } else {
                     toast.error('Payment Error')
                 }
             }

@@ -51,8 +51,11 @@ const CampaignDetails = () => {
                         <hr className="border border-gray-300 border-dashed my-5" />
                         <p className="text-lg font-medium">{shortDescription}</p>
                         <p className="text-base mt-3">{longDescription}</p>
-                        <div>
-                            <button onClick={open} className='w-[120px] block mt-5 hover:text-white hover:bg-gray-700 duration-300 bg-gray-200 px-5 text-center py-2 rounded-lg text-lg font-semibold'> Donate </button>
+                        <div className="flex items-center gap-3">
+                            <button disabled={campaignData.pauseStatus === true} onClick={open} className='w-[120px] block mt-5 hover:text-white hover:bg-gray-700 duration-300 bg-gray-200 px-5 text-center py-2 rounded-lg text-lg font-semibold'> Donate </button>
+                            {
+                                campaignData.pauseStatus === true && <p className="text-red-600 mt-5 capitalize text-lg font-semibold">Donation Paused By Owner</p>
+                            }
                         </div>
                     </div>
                 </div>

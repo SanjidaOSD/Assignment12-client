@@ -23,6 +23,7 @@ import CampaignDetails from "../Pages/CampaignDetails/CampaignDetails";
 import MyDonations from "../Pages/Dahsboard/User/MyDonations/MyDonations";
 import AllPets from './../Pages/Dahsboard/Admin/AllPets/AllPets';
 import AllDonations from './../Pages/Dahsboard/Admin/AllDonations/AllDonations';
+import UpdateCampaign from "../Pages/Dahsboard/User/UpdateCampaign/UpdateCampaign";
 
 
 export const router = createBrowserRouter([
@@ -103,6 +104,10 @@ export const router = createBrowserRouter([
       {
         path: 'my-campaign',
         element: <MyCampaign/>
+      },
+      {
+        path: 'update-campaign/:id',
+        element: <UpdateCampaign/>
       },
       {
         path: 'my-donations',
