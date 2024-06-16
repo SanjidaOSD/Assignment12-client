@@ -18,7 +18,7 @@ const CreateCampaign = () => {
 
         try {
             const donationImageURL = await uploadImage(donationImage[0])
-            const newCampaign = { campaignName, maxDonationAmount, lastDate, shortDescription, longDescription, donationImageURL, createdDate, campaignCreator: user?.email }
+            const newCampaign = { campaignName, maxDonationAmount, lastDate, shortDescription, longDescription, donationImageURL, createdDate, campaignCreator: user?.email, pauseStatus : false }
             const { data } = await axiosSecure.post('/create-campaign', newCampaign)
             console.log(data);
             if(data.insertedId) {

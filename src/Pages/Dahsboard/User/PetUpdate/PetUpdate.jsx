@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../../../Hook/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
@@ -11,7 +11,6 @@ import { ImSpinner } from 'react-icons/im';
 const PetUpdate = () => {
     const { id } = useParams()
     const axiosSecure = useAxiosSecure()
-    const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [petData, isLoading] = usePetDetailsByID(id)
     const { _id, petName, petImageURL, petCategory, petAge, petLocation, shortDescription, longDescription } = petData || {}
@@ -33,7 +32,6 @@ const PetUpdate = () => {
             const { data } = await axiosSecure.patch(`/pet-data-update/${_id}`, newUpdatedPet)
             if (data.modifiedCount > 0) {
                 toast.success("Updated Successfully")
-                navigate('/dashboard/my-added-pets')
             }
         } catch (err) {
             toast.success("Update Failed")
