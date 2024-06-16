@@ -41,58 +41,59 @@ const CheckoutForm = ({ amount, campaignData }) => {
             return
         }
 
-        const { error } = await stripe.createPaymentMethod({
-            type: 'card',
-            card
-        })
+        try {
+            const { error } = await stripe.createPaymentMethod({
+                type: 'card',
+                card
+            })
 
-        if (error) {
-            setError(error?.message)
-            setLoading(false)
-        } else {
-            setError('')
-            setLoading(false)
-        }
-
-        const { paymentIntent, error: confimationError } = await stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-                card: card,
-                billing_details: {
-                    email: user?.email || "Unknown",
-                    name: user?.displayName || "Unknown"
-                }
+            if (error) {
+                setError(error?.message)
+                setLoading(false)
+            } else {
+                setError('')
+                setLoading(false)
             }
-        })
 
-        if (confimationError) {
-            toast.error(confimationError)
-        } else {
-            if (paymentIntent?.status === 'succeeded') {
-                setTransectionId(paymentIntent?.id)
-                const paidAmount = paymentIntent.amount / 100;
-                console.log("Paid : ", paidAmount);
-                const newPaymentData = {
-                    userName: user?.displayName,
-                    userEmail: user?.email,
-                    paidAmount: paidAmount,
-                    campaignId: campaignData._id,
-                    campaignCreator :  campaignData.campaignCreator
+            const { paymentIntent, error: confimationError } = await stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        email: user?.email || "Unknown",
+                        name: user?.displayName || "Unknown"
+                    }
                 }
-                try {
+            })
+
+            if (confimationError) {
+                toast.error(confimationError)
+            } else {
+                if (paymentIntent?.status === 'succeeded') {
+                    setTransectionId(paymentIntent?.id)
+                    const paidAmount = paymentIntent.amount / 100;
+                    console.log("Paid : ", paidAmount);
+                    const newPaymentData = {
+                        userName: user?.displayName,
+                        userEmail: user?.email,
+                        paidAmount: paidAmount,
+                        campaignId: campaignData._id,
+                        campaignCreator: campaignData.campaignCreator,
+                        petImage: campaignData.donationImageURL,
+                        petName: campaignData.campaignName
+                    }
                     await axiosSecure.post("/donation-payment", newPaymentData)
                     toast.success("Payment Success")
-
-                } catch (err) {
-                    console.log(err);
+                } else{
+                    toast.error('Payment Error')
                 }
-
-                console.log(newPaymentData);
-
-
             }
-        }
 
+        } catch (err) {
+            console.log(err);
+            toast.err('Payment Failed')
+        }
     }
+
     return (
         <form onSubmit={handlePaymentSubmit}>
             <CardElement
@@ -112,16 +113,20 @@ const CheckoutForm = ({ amount, campaignData }) => {
                 }}
             />
             <div className='mt-10'>
-                {
-                    error && <p className='text-red-500 font-semibold text-center'> {error}</p>
-                }
-                {
-                    transectionId &&
-                    <div>
-                        <h1 className='text-2xl font-semibold text-center'> Payment Success </h1>
-                        <p className='text-green-500 font-semibold text-center mt-2 uppercase'>Transection ID : {transectionId}</p>
-                    </div>
-                }
+                <div>
+                    {
+                        error && <p className='text-red-500 font-semibold text-center'> {error}</p>
+                    }
+                </div>
+                <div>
+                    {
+                        transectionId &&
+                        <div>
+                            <h1 className='text-2xl font-semibold text-center'> Payment Success </h1>
+                            <p className='text-green-500 font-semibold text-center mt-2 uppercase'>Transection ID : {transectionId}</p>
+                        </div>
+                    }
+                </div>
             </div>
             <Button className='px-10 py-3 block mx-auto mt-10' type="submit" disabled={!stripe || !clientSecret || transectionId}>
                 {

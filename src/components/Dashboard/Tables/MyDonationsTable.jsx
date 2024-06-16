@@ -1,7 +1,10 @@
+import { Button } from '@material-tailwind/react';
 import PropTypes from 'prop-types';
 import DataTable from 'react-data-table-component';
 
-const MyDonationsTable = ({MyDonationsData}) => {
+const MyDonationsTable = ({MyDonationsData, handleRefund}) => {
+
+    console.log(MyDonationsData);
 
     const columns = [
         {
@@ -11,26 +14,27 @@ const MyDonationsTable = ({MyDonationsData}) => {
             maxWidth: "100px",
         },
         {
-            name: 'Name',
-            selector: (user) => user.userName,
+            name: 'Pet Image',
+            selector: (data) => <div><img className='h-10 w-16 rounded-lg my-2 object-cover' src={data.petImage} alt="Donation Image" /></div>,
             sortable: true,
         },
         {
-            name: 'Email',
-            selector: (user) => user.userEmail,
+            name: 'Campaign Name',
+            selector: (data) => data.petName,
             sortable: true,
 
         },
         {
-            name: 'Amount',
-            selector: (user) => user.amount,
+            name: 'Donated Amount',
+            selector: (data) => <p>$ { data.paidAmount}</p>,
             sortable: true,
 
         },
         {
-            name: 'Address',
-            selector: (user) => user.userAddress,
-            sortable: true,
+            name: 'Ask for Refund',
+            selector: (data) => <div>
+                <Button onClick={()=>handleRefund(data._id)}>Refund</Button>
+            </div> ,
 
         },
 
@@ -47,6 +51,7 @@ const MyDonationsTable = ({MyDonationsData}) => {
 
 MyDonationsTable.propTypes = {
     MyDonationsData: PropTypes.array,
+    handleRefund: PropTypes.func,
 
 }
 
