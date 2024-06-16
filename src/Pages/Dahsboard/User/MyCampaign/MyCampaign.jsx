@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../../Hook/useAxiosSecure";
 import UseAuth from "../../../../Hook/UseAuth";
 import MyCampaignTable from "../../../../components/Dashboard/Tables/MyCampaignTable";
 import toast from "react-hot-toast";
+import { ImSpinner } from 'react-icons/im';
 
 const MyCampaign = () => {
     const axiosSecure = useAxiosSecure()
@@ -40,6 +41,10 @@ const MyCampaign = () => {
             toast.success('Campaign Acivate Failed')
             console.log(err);
         }
+    }
+
+    if (isLoading || loading) {
+        return <div className="flex justify-center items-center mt-10"><ImSpinner className="text-3xl animate-spin text-center text-green-500" /></div>
     }
 
     return (
