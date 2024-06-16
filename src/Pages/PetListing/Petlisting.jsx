@@ -3,25 +3,35 @@ import useAxiosSecure from "../../Hook/useAxiosSecure";
 import { ImSpinner } from 'react-icons/im';
 import { Helmet } from "react-helmet";
 import PetCard from "../../components/Dashboard/PetCard/PetCard";
+import { useState } from "react";
 
 const Petlisting = () => {
 
     const axiosSecure = useAxiosSecure()
+    const [search, setSearch] = useState("");
     const { data: pets = [], isLoading } = useQuery({
-        queryKey: ["Pets"],
+        queryKey: ["Pets",search],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/pets`)
+            const { data } = await axiosSecure.get(`/pets?search=${search}`)
             const filteredPets = data.filter(item => item.adopted === false)
-            // TODO : configuration filter
+            
             const newFilteredPets = filteredPets.sort((a, b) => b.date - a.date)
             return newFilteredPets;
         }
     })
 
+    const handleSearch = (e) =>{
+        e.preventDefault()
+        const searchValue = e.target.search.value || "";
+        setSearch(searchValue)
+    }
+
     if (isLoading) {
         return <div className="flex justify-center items-center mt-10"><ImSpinner className="text-3xl animate-spin text-center text-green-500" /></div>
     }
     
+
+
     return (
         <div>
             <Helmet>
@@ -29,7 +39,7 @@ const Petlisting = () => {
             </Helmet>
             <h1 className="text-2xl font-semibold text-center pt-5 pb-8">Pet Listing</h1>
             <div className="pb-8">
-                <form action="" className="flex w-full justify-center items-center gap-5">
+                <form onSubmit={handleSearch} className="flex w-full justify-center items-center gap-5">
                     <div>
                         <input type="text" name="search" className="block max-w-[260px] mx-auto py-2 px-5 bg-gray-100 font-semibold border rounded-lg" />
                     </div>

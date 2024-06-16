@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom';
 
-const AllDonationTable = ({ AllDonationCampaigns, handleDelete, handlePause }) => {
+const AllDonationTable = ({ AllDonationCampaigns, handleDelete, handlePause, handleActive }) => {
 
 
     const columns = [
@@ -32,13 +32,17 @@ const AllDonationTable = ({ AllDonationCampaigns, handleDelete, handlePause }) =
         {
             name: 'Pause Campaign',
             selector: (data) => <div>
-                <Button onClick={() => handlePause(data._id)} disabled={data.pauseStatus} className={`py-[6px] normal-case ${data.adopted ? "px-4" : "px-[23px] bg-green-500"}`}>{data.pauseStatus ? "Paused" : "Pause"}</Button>
+                <Button onClick={() => handlePause(data._id)} disabled={data.pauseStatus} className={`py-[6px] normal-case ${data.pauseStatus ? "px-4" : "px-[23px] bg-green-500"}`}>{data.pauseStatus ? "Paused" : "Pause"}</Button>
+                {
+                    data.pauseStatus === true && <Button onClick={() => handleActive(data._id)} className={`py-[6px] normal-case ml-3 px-5 bg-green-500`}> Active </Button>
+                }
             </div>,
+            minWidth: "240px"
         },
         {
             name: 'Actions',
             selector: (data) => <div>
-                <Link to={`/dashboard/pet-update/${data._id}`}><Button className='px-4 py-[6px] normal-case bg-green-500'>Update</Button></Link>
+                <Link to={`/dashboard/update-campaign/${data._id}`}><Button className='px-4 py-[6px] normal-case bg-green-500'>Update</Button></Link>
                 <Button className='px-4 py-[6px] normal-case ml-2 bg-red-500' onClick={() => handleDelete(data._id)}>Delete</Button>
             </div>,
 
@@ -59,6 +63,7 @@ AllDonationTable.propTypes = {
     AllDonationCampaigns: PropTypes.array,
     handleDelete: PropTypes.func,
     handlePause: PropTypes.func,
+    handleActive: PropTypes.func,
 }
 
 export default AllDonationTable;
