@@ -1,8 +1,14 @@
-# React + Vite
+Website Name : Pet House
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Link : https://pethousebd.netlify.app
 
-Currently, two official plugins are available:
+Admin Email : sanjida@gmail.com
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Admin Pass  : Sanjida123*
+
+
+This website is a Pet Adoption & Donation related website. 
+There are 2 role for users one is Admin and another is User. 
+An User can add pet, donation campaign and manage them. Admin can control all content of this website.
+
+
