@@ -15,7 +15,7 @@ const SignUp = () => {
     const [success, setSuccess] = useState(' ');
     const [showPassword, setShowPassword] = useState(false);
 
-    const { createUser } = UseAuth();
+    const { createUser, updateUserProfile } = UseAuth();
     const {
         register,
         handleSubmit,
@@ -31,7 +31,7 @@ const SignUp = () => {
     const onSubmit = data => {
 
         //  console.log(data)
-        const { email, password } = data;
+        const { email, password, name, photo } = data;
 
         if (password.length < 6) {
             setRegisterError('password should be at-least 6 character or longer')
@@ -55,12 +55,12 @@ const SignUp = () => {
 
         // create user and updateProfile
         createUser(email, password)
-            .then(result => {
-                console.log(result.user)
+            .then(async(result) => {
+                await updateUserProfile(name, photo)
                 const userInfo = {
                     email: result.user?.email,
-                    name: result.user?.displayName,
-                    photo: result.user?.photoURL,
+                    name: name,
+                    photo: photo,
                     role: 'user'
                 }
                 axiosPublic.post('/users', userInfo)

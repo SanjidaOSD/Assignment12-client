@@ -1,36 +1,31 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
-import { ImSpinner } from 'react-icons/im';
 import { Helmet } from "react-helmet";
 import PetCard from "../../components/Dashboard/PetCard/PetCard";
 import { useState } from "react";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const Petlisting = () => {
-
     const axiosSecure = useAxiosSecure()
     const [search, setSearch] = useState("");
     const { data: pets = [], isLoading } = useQuery({
-        queryKey: ["Pets",search],
+        queryKey: ["Pets", search],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/pets?search=${search}`)
             const filteredPets = data.filter(item => item.adopted === false)
-            
+
             const newFilteredPets = filteredPets.sort((a, b) => b.date - a.date)
             return newFilteredPets;
         }
     })
 
-    const handleSearch = (e) =>{
+
+    const handleSearch = (e) => {
         e.preventDefault()
         const searchValue = e.target.search.value || "";
         setSearch(searchValue)
     }
-
-    if (isLoading) {
-        return <div className="flex justify-center items-center mt-10"><ImSpinner className="text-3xl animate-spin text-center text-green-500" /></div>
-    }
-    
-
 
     return (
         <div>
@@ -41,18 +36,48 @@ const Petlisting = () => {
             <div className="pb-8">
                 <form onSubmit={handleSearch} className="flex w-full justify-center items-center gap-5">
                     <div>
-                        <input type="text" name="search" className="block max-w-[260px] mx-auto py-2 px-5 bg-gray-100 font-semibold border rounded-lg" />
+                        <input type="text" name="search" className="block max-w-[260px] mx-auto py-2 px-5 bg-gray-50 font-semibold border rounded-lg" />
                     </div>
                     <div>
-                        <button type="submit" className="px-5 py-2 block font-semibold bg-gray-100 rounded-lg">Search</button>
+                        <button type="submit" className="px-5 py-2 block font-semibold bg-gray-50 rounded-lg">Search</button>
                     </div>
                 </form>
             </div>
-            <div className="container mx-auto px-5 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pb-16">
-                {
-                    pets.map(pet => <PetCard key={pet._id} pet={pet} />)
-                }
-            </div>
+            {
+                isLoading ?
+                    <div className="container mx-auto px-5 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pb-16">
+                        <div>
+                            <h1><Skeleton /> </h1>
+                            <h1><Skeleton count={5} /> </h1>
+                        </div>
+                        <div>
+                            <h1><Skeleton /> </h1>
+                            <h1><Skeleton count={5} /> </h1>
+                        </div>
+                        <div>
+                            <h1><Skeleton /> </h1>
+                            <h1><Skeleton count={5} /> </h1>
+                        </div>
+                        <div>
+                            <h1><Skeleton /> </h1>
+                            <h1><Skeleton count={5} /> </h1>
+                        </div>
+                        <div>
+                            <h1><Skeleton /> </h1>
+                            <h1><Skeleton count={5} /> </h1>
+                        </div>
+                        <div>
+                            <h1><Skeleton /> </h1>
+                            <h1><Skeleton count={5} /> </h1>
+                        </div>
+                    </div>
+                    :
+                    <div className="container mx-auto px-5 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pb-16">
+                        {
+                            pets.map(pet => <PetCard key={pet._id} pet={pet} />)
+                        }
+                    </div>
+            }
         </div>
     );
 };

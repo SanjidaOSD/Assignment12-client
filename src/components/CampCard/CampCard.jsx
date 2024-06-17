@@ -13,7 +13,7 @@ const CampCard = ({ campaign }) => {
                 <h3 className='font-semibold text-lg py-2'> Maximum Donation Amount : $ {maxDonationAmount}</h3>
                 <p className='flex gap-3 items-center font-semibold'></p>
                 <div>
-                    <Link to={`/campaign-details/${_id}`}><button className='w-full block mt-5 hover:text-white hover:bg-gray-700 duration-300 bg-gray-200 px-5 text-center py-2 rounded-lg text-lg font-semibold'> See Details </button></Link>
+                    <Link to={`/campaign-details/${_id}`}><button className='w-full block mt-5 hover:text-white hover:bg-gray-700 duration-300 bg-gray-50 px-5 text-center py-2 rounded-lg text-lg font-semibold'> See Details </button></Link>
                 </div>
             </div>
         </div>

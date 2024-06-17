@@ -28,9 +28,6 @@ const CheckoutForm = ({ amount, campaignData }) => {
     }, [axiosSecure, amount])
 
 
-    // TODO :Solve an error issue (App Crushed when payment failed)
-
-
     const handlePaymentSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
@@ -59,7 +56,7 @@ const CheckoutForm = ({ amount, campaignData }) => {
                 setLoading(false)
             }
 
-            const { paymentIntent, error: confimationError } = await stripe.confirmCardPayment(clientSecret, {
+            const { paymentIntent, error: confirmationError } = await stripe.confirmCardPayment(clientSecret, {
                 payment_method: {
                     card: card,
                     billing_details: {
@@ -69,26 +66,26 @@ const CheckoutForm = ({ amount, campaignData }) => {
                 }
             })
 
-            if (confimationError) {
-                toast.error(confimationError)
+            if (confirmationError) {
+                toast.error(confirmationError)
             } else {
                 if (paymentIntent?.status === 'succeeded') {
                     setTransectionId(paymentIntent?.id)
                     const paidAmount = paymentIntent.amount / 100;
-                    // Update campain data for donated amount and donators data
+                    // Update campaign data for donated amount and donators data
                     const previousDonated = parseInt(campaignData.totalDonatedAmount)
                     const newDonated = parseInt(amount)
                     const updatedData = {
-                        totalDonatedAmount : previousDonated + newDonated,
-                        donators : [...campaignData.donators, {
-                            name : user.displayName,
-                            email : user.email,
-                            photo : user.photoURL,
-                            donatedAmount : newDonated
+                        totalDonatedAmount: previousDonated + newDonated,
+                        donators: [...campaignData.donators, {
+                            name: user.displayName,
+                            email: user.email,
+                            photo: user.photoURL,
+                            donatedAmount: newDonated
                         }]
                     }
                     await axiosSecure.patch(`/payment-update-campaign/${campaignData._id}`, updatedData)
-                    
+
                     // Post data to payment collection
                     const newPaymentData = {
                         userName: user?.displayName,
@@ -113,47 +110,49 @@ const CheckoutForm = ({ amount, campaignData }) => {
     }
 
     return (
-        <form onSubmit={handlePaymentSubmit}>
-            <CardElement
-                options={{
-                    style: {
-                        base: {
-                            fontSize: '16px',
-                            color: '#424770',
-                            '::placeholder': {
-                                color: '#aab7c4',
+        <div>
+            <form onSubmit={handlePaymentSubmit}>
+                <CardElement
+                    options={{
+                        style: {
+                            base: {
+                                fontSize: '16px',
+                                color: '#424770',
+                                '::placeholder': {
+                                    color: '#aab7c4',
+                                },
+                            },
+                            invalid: {
+                                color: '#9e2146',
                             },
                         },
-                        invalid: {
-                            color: '#9e2146',
-                        },
-                    },
-                }}
-            />
-            <div className='mt-10'>
-                <div>
-                    {
-                        error && <p className='text-red-500 font-semibold text-center'> {error}</p>
-                    }
+                    }}
+                />
+                <div className='mt-10'>
+                    <div>
+                        {
+                            error && <p className='text-red-500 font-semibold text-center'> {error}</p>
+                        }
+                    </div>
+                    <div>
+                        {
+                            transectionId &&
+                            <div>
+                                <h1 className='text-2xl font-semibold text-center'> Payment Success </h1>
+                                <p className='text-green-500 font-semibold text-center mt-2 uppercase'>Transection ID : {transectionId}</p>
+                            </div>
+                        }
+                    </div>
                 </div>
-                <div>
+                <Button className='px-10 py-3 block mx-auto mt-10' type="submit" disabled={!stripe || !clientSecret || transectionId}>
                     {
-                        transectionId &&
-                        <div>
-                            <h1 className='text-2xl font-semibold text-center'> Payment Success </h1>
-                            <p className='text-green-500 font-semibold text-center mt-2 uppercase'>Transection ID : {transectionId}</p>
-                        </div>
+                        loading ? <span> <ImSpinner className='animate-spin' /> </span>
+                            :
+                            <span>Pay</span>
                     }
-                </div>
-            </div>
-            <Button className='px-10 py-3 block mx-auto mt-10' type="submit" disabled={!stripe || !clientSecret || transectionId}>
-                {
-                    loading ? <span> <ImSpinner className='animate-spin' /> </span>
-                        :
-                        <span>Pay</span>
-                }
-            </Button>
-        </form>
+                </Button>
+            </form>
+        </div>
     );
 };
 

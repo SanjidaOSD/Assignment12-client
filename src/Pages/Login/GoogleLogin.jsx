@@ -41,7 +41,7 @@ const GoogleLogin = () => {
         <title>Google log in</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
-      <button onClick={() => handleGoogleLogin(googleLogin)} className="btn w-full bg-gray-50 flex hover:bg-gray-100 duration-200 justify-center items-center gap-4 py-2 my-1 rounded-lg">Log in with <FcGoogle></FcGoogle></button>
+      <button onClick={() => handleGoogleLogin(googleLogin)} className="btn w-full bg-gray-50 flex hover:bg-gray-50 duration-200 justify-center items-center gap-4 py-2 my-1 rounded-lg">Log in with <FcGoogle></FcGoogle></button>
     </div>
   );
 };

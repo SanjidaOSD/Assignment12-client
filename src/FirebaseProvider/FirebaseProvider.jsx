@@ -2,7 +2,7 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import auth from "../FirebaseProvider/Firebase.config";
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import useAxiosPublic from "../Hook/useAxiosPublic";
 
 
@@ -45,6 +45,13 @@ const FirebaseProvider = ({ children }) => {
 
     }
 
+    // Update User
+    const updateUserProfile = (name, photo) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: photo,
+        })
+    }
 
     // log out
     const logout = () => {
@@ -81,8 +88,6 @@ const FirebaseProvider = ({ children }) => {
         }
     }, [axiosPublic])
 
-    // TODO : Impliment Update user (Username and Photo in navbar not working)
-
     // console.log(user)
     const allValues = {
         user,
@@ -92,9 +97,7 @@ const FirebaseProvider = ({ children }) => {
         googleLogin,
         githubLogin,
         logout,
-
-
-
+        updateUserProfile,
     }
 
     return (
