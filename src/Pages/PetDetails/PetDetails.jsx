@@ -60,7 +60,7 @@ const PetDetails = () => {
                 <div>
                     <img className="w-full h-full object-cover rounded-lg" src={petImageURL} alt="Pet Image" />
                 </div>
-                <div className="w-full bg-gray-50 rounded-lg p-10">
+                <div className="w-full bg-blue-50 rounded-lg p-10">
                     <h2 className="text-2xl font-semibold">Pet Name : {petName}</h2>
                     <p className='flex gap-3 items-center font-semibold my-2'> <GrLocation />  {petLocation}</p>
                     <div className="flex gap-5 mt-5 mb-2">
@@ -74,7 +74,7 @@ const PetDetails = () => {
                     <p className="text-lg font-medium">{shortDescription}</p>
                     <p className="text-base mt-3">{longDescription}</p>
                     <div>
-                        <button onClick={open} className='w-[120px] block mt-5 hover:text-white hover:bg-gray-700 duration-300 bg-gray-50 px-5 text-center py-2 rounded-lg text-lg font-semibold'> Adopt </button>
+                        <button onClick={open} className='w-[120px] block mt-5 hover:text-white hover:bg-gray-700 duration-300 bg-blue-50 px-5 text-center py-2 rounded-lg text-lg font-semibold'> Adopt </button>
                     </div>
                     <div>
                         <Transition appear show={isOpen}>
@@ -98,7 +98,7 @@ const PetDetails = () => {
                                                         <div className="mt-5">
                                                             <img className="w-full h-[160px] object-cover rounded-lg" src={petImageURL} alt="Pet Image" />
                                                         </div>
-                                                        <div className="w-full bg-gray-50 rounded-lg">
+                                                        <div className="w-full bg-blue-50 rounded-lg">
                                                             <h2 className="text-2xl font-semibold mt-3">Pet Name - {petName}</h2>
                                                         </div>
                                                     </div>

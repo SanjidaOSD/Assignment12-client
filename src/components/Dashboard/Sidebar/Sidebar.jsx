@@ -32,7 +32,7 @@ const Sidebar = () => {
     return (
         <>
             {/* Small Screen Navbar */}
-            <div className='bg-gray-50 text-gray-800 flex justify-between md:hidden'>
+            <div className='bg-blue-50 text-gray-800 flex justify-between md:hidden'>
                 <div>
                     <div className='block cursor-pointer p-4 font-bold'>
                         <Link to='/' className='flex gap-5 items-center'>
@@ -50,7 +50,7 @@ const Sidebar = () => {
 
                 <button
                     onClick={handleToggle}
-                    className='mobile-menu-button p-4 focus:outline-none focus:bg-gray-50'
+                    className='mobile-menu-button p-4 focus:outline-none focus:bg-blue-50'
                 >
                     <AiOutlineBars className='h-5 w-5' />
                 </button>
@@ -58,7 +58,7 @@ const Sidebar = () => {
 
             {/* Sidebar */}
             <div
-                className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-50 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${isActive && '-translate-x-full'
+                className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-blue-50 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${isActive && '-translate-x-full'
                     }  md:translate-x-0  transition duration-200 ease-in-out`}
             >
                 <div>

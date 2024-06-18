@@ -38,7 +38,7 @@ const AddPet = () => {
             <h1 className="text-2xl font-semibold text-center pt-16 pb-10">Add Pet</h1>
             <div>
                 <form onSubmit={handleSubmit(handleAddPet)}>
-                    <select className="block px-5 py-2 bg-gray-50 rounded-md w-full my-3" {...register("petCategory", { required: true })}>
+                    <select className="block px-5 py-2 bg-blue-50 rounded-md w-full my-3" {...register("petCategory", { required: true })}>
                         <option value="">Pet Category</option>
                         <option value="dog">Dog</option>
                         <option value="cat">Cat</option>
@@ -48,26 +48,26 @@ const AddPet = () => {
                     </select>
                     {errors.petName && <span>This field is required</span>}
 
-                    <input className="block px-5 py-2 bg-gray-50 rounded-md w-full my-3" type="text" placeholder="Pet Name" name="petName" {...register("petName", { required: true })} />
+                    <input className="block px-5 py-2 bg-blue-50 rounded-md w-full my-3" type="text" placeholder="Pet Name" name="petName" {...register("petName", { required: true })} />
                     {errors.petName && <span>This field is required</span>}
 
-                    <input className="block px-5 py-2 bg-gray-50 rounded-md w-full my-3" type="text" placeholder="Pet Age" name="petAge" {...register("petAge", { required: true })} />
+                    <input className="block px-5 py-2 bg-blue-50 rounded-md w-full my-3" type="text" placeholder="Pet Age" name="petAge" {...register("petAge", { required: true })} />
                     {errors.petAge && <span>This field is required</span>}
 
-                    <input className="block px-5 py-2 bg-gray-50 rounded-md w-full my-3" type="file" placeholder="Pet Image" name="petImage" {...register("petImage", { required: true })} />
+                    <input className="block px-5 py-2 bg-blue-50 rounded-md w-full my-3" type="file" placeholder="Pet Image" name="petImage" {...register("petImage", { required: true })} />
                     {errors.petImage && <span>This field is required</span>}
 
-                    <input className="block px-5 py-2 bg-gray-50 rounded-md w-full my-3" type="text" placeholder="Pet Location" name="petLocation" {...register("petLocation", { required: true })} />
+                    <input className="block px-5 py-2 bg-blue-50 rounded-md w-full my-3" type="text" placeholder="Pet Location" name="petLocation" {...register("petLocation", { required: true })} />
                     {errors.petLocation && <span>This field is required</span>}
 
-                    <textarea rows={1} className="block px-5 py-2 bg-gray-50 rounded-md w-full my-3" type="text" placeholder="Short Description" name="shortDescription" {...register("shortDescription", { required: true })} />
+                    <textarea rows={1} className="block px-5 py-2 bg-blue-50 rounded-md w-full my-3" type="text" placeholder="Short Description" name="shortDescription" {...register("shortDescription", { required: true })} />
                     {errors.shortDescription && <span>This field is required</span>}
 
                     <div>
 
                     </div>
 
-                    <textarea rows={5} className="block px-5 py-2 bg-gray-50 rounded-md w-full my-3" type="text" placeholder="Long Description" name="longDescription" {...register("longDescription", { required: true })} />
+                    <textarea rows={5} className="block px-5 py-2 bg-blue-50 rounded-md w-full my-3" type="text" placeholder="Long Description" name="longDescription" {...register("longDescription", { required: true })} />
                     {errors.longDescription && <span>This field is required</span>}
 
 

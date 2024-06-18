@@ -11,7 +11,7 @@ const PetsCategory = () => {
                 <p className="max-w-[500px] mx-auto text-center font-medium py-3"> Find your perfect companion among dogs, cats, small animals, birds, reptiles, fish, and farm animals.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-10">
-                <div className="bg-gray-50 shadow-md rounded-lg p-10 flex justify-center items-center flex-col">
+                <div className="bg-blue-50 shadow-md rounded-lg p-10 flex justify-center items-center flex-col">
                     <div>
                         <LuDog className="text-5xl" />
                     </div>
@@ -20,7 +20,7 @@ const PetsCategory = () => {
                         <p className="font-medium text-center">Adopt dogs Loyal, loving companions for families and individuals.</p>
                     </div>
                 </div>
-                <div className="bg-gray-50 shadow-md rounded-lg p-10 flex justify-center items-center flex-col">
+                <div className="bg-blue-50 shadow-md rounded-lg p-10 flex justify-center items-center flex-col">
                     <div>
                         <IoLogoOctocat className="text-5xl" />
                     </div>
@@ -29,7 +29,7 @@ const PetsCategory = () => {
                         <p className="font-medium text-center">Adopt cats Independent, affectionate, perfect for various lifestyles and homes.</p>
                     </div>
                 </div>
-                <div className="bg-gray-50 shadow-md rounded-lg p-10 flex justify-center items-center flex-col">
+                <div className="bg-blue-50 shadow-md rounded-lg p-10 flex justify-center items-center flex-col">
                     <div>
                         <GiRabbitHead className="text-6xl" />
                     </div>
@@ -38,7 +38,7 @@ const PetsCategory = () => {
                         <p className="font-medium text-center">Adopt rabbits Gentle, social, ideal for indoor spaces and families.</p>
                     </div>
                 </div>
-                <div className="bg-gray-50 shadow-md rounded-lg p-10 flex justify-center items-center flex-col">
+                <div className="bg-blue-50 shadow-md rounded-lg p-10 flex justify-center items-center flex-col">
                     <div>
                         <IoFishOutline className="text-5xl" />
                     </div>

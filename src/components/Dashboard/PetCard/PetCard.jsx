@@ -1,6 +1,6 @@
 
 import PropTypes from 'prop-types';
-import { GrLocation } from "react-icons/gr";
+import { FaLocationDot } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -18,12 +18,12 @@ const PetCard = ({ pet }) => {
                         <h1><Skeleton /></h1>
                 }
             </div>
-            <div className='p-5 bg-gray-50 rounded-b-lg shadow-md'>
+            <div className='p-5 bg-blue-50 rounded-b-lg shadow-md'>
                 <h2 className='text-2xl font-semibold'>{pet.petName || <Skeleton />}</h2>
                 <h3 className='font-semibold text-lg py-2'> Pet Age : {pet.petAge || <Skeleton count={3} />} Years</h3>
-                <p className='flex gap-3 items-center font-semibold'> <GrLocation />  {pet.petLocation || ""}</p>
+                <p className='flex gap-3 items-center font-semibold'> <FaLocationDot />  {pet.petLocation || ""}</p>
                 <div>
-                    <Link to={`/pet-details/${pet._id || ""}`}><button className='w-full block mt-5 hover:text-white hover:bg-gray-700 duration-300 bg-gray-50 px-5 text-center py-2 rounded-lg text-lg font-semibold'> See Details </button></Link>
+                    <Link to={`/pet-details/${pet._id || ""}`}><button className='w-full block mt-5 hover:text-white hover:bg-gray-700 duration-300 bg-blue-50 px-5 text-center py-2 rounded-lg text-lg font-semibold'> See Details </button></Link>
                 </div>
             </div>
         </div>

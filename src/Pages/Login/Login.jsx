@@ -34,7 +34,7 @@ const Login = () => {
                 <div className="card shrink-0 w-full h-full max-w-sm mx-auto rounded-xl shadow-2xl  p-4">
                     <h2 className="text-4xl text-center mt-6 mb-6 font-bold">Login Form</h2>
 
-                    <Link to='/emailLogin'><button onClick={onSubmit} className="btn w-full bg-gray-50 flex hover:bg-gray-50 duration-200 justify-center items-center gap-4 py-2 my-1 rounded-lg">Log in with Email</button></Link>
+                    <Link to='/emailLogin'><button onClick={onSubmit} className="btn w-full bg-blue-50 flex hover:bg-blue-50 duration-200 justify-center items-center gap-4 py-2 my-1 rounded-lg">Log in with Email</button></Link>
 
                     <GoogleLogin></GoogleLogin>
                     <Github></Github>

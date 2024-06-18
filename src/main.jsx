@@ -8,8 +8,8 @@ import { router } from './Routes/Routes';
 import FirebaseProvider from './FirebaseProvider/FirebaseProvider';
 import { HelmetProvider } from 'react-helmet-async';
 
-
 const queryClient = new QueryClient()
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

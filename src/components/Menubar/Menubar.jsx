@@ -10,13 +10,14 @@ import {
     MenuItem,
     Avatar,
 } from "@material-tailwind/react";
-import { RxDashboard } from "react-icons/rx";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { FaBars, FaUser, FaXmark } from "react-icons/fa6";
 import { Link, NavLink } from "react-router-dom";
 import { ImSpinner } from "react-icons/im";
 import UseAuth from "../../Hook/UseAuth";
 import useAdmin from "../../Hook/useAdmin";
+import ThemeController from "../ThemeController/ThemeController";
 
 const Menubar = () => {
     const [isAdmin, isAdminLoading] = useAdmin();
@@ -26,6 +27,36 @@ const Menubar = () => {
     const closeSecondMenu = () => setIsSecondMenuOpen(false);
     const [openNav, setOpenNav] = useState(false);
     const { user, isUserLoading, logout } = UseAuth();
+    const [theme, setTheme] = useState(false);
+    const [themeClicked, setThemeClicked] = useState(false)
+
+    const handleTheme = (e) => {
+        if (e.target.checked) {
+            setTheme(true);
+            setThemeClicked(true)
+            localStorage.setItem('theme-color', 'dark')
+        }
+        else {
+            setTheme(false)
+            setThemeClicked(false)
+            localStorage.setItem('theme-color', 'light')
+        }
+    }
+
+    const themeControl = (theme) =>{
+        if(theme === "dark"){
+            document.querySelector('body').classList.add("dark-theme")
+            document.querySelector('body').classList.remove("light-theme")
+        }else{
+            document.querySelector('body').classList.add("light-theme")
+            document.querySelector('body').classList.remove("dark-theme")
+        }
+    }
+
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('theme-color');
+        themeControl(savedTheme)
+    }, [theme])
 
     const handleWindowResize = () =>
         window.innerWidth >= 960 && setOpenNav(false);
@@ -85,6 +116,9 @@ const Menubar = () => {
                             </Typography>
 
                         </ul>
+                        <div className="mt-[2px]">
+                            <ThemeController handleTheme={handleTheme} themeClicked={themeClicked}/>
+                        </div>
                         <div>
                             {
                                 !isAdminLoading && !isUserLoading && user ?
@@ -126,7 +160,7 @@ const Menubar = () => {
                                                         className="p-1 font-medium"
                                                     >
                                                         <Link to={`${isAdmin ? "/dashboard/users" : "/dashboard/add-pet"}`} className="flex gap-2 items-center hover:text-red-500 border-b-2 border-transparent font-semibold transition-colors">
-                                                            <RxDashboard className="text-lg -ml-[2px]" />
+                                                            <MdOutlineSpaceDashboard className="text-lg -ml-[2px]" />
                                                             Dashboard
                                                         </Link>
                                                     </Typography>
@@ -198,8 +232,16 @@ const Menubar = () => {
                                     Donation Campaigns
                                 </NavLink>
                             </Typography>
+                            <Typography
+                                as="li"
+                                variant="small"
+                                color="blue-gray"
+                                className="p-1 font-medium mx-auto inline-block"
+                            >
 
+                            </Typography>
                         </ul>
+
                         <div>
                             <Menu open={isSecondMenuOpen} handler={setIsSecondMenuOpen} placement="top-center">
                                 <MenuHandler>
@@ -231,7 +273,7 @@ const Menubar = () => {
                                             className="p-1 font-medium"
                                         >
                                             <Link to={` ${isAdmin ? "/dashboard/users" : "/dashboard/add-pet"}`} className="flex gap-2 items-center hover:text-red-500 border-b-2 border-transparent font-semibold transition-colors">
-                                                <RxDashboard className="text-lg -ml-[2px]" />
+                                                <MdOutlineSpaceDashboard className="text-lg -ml-[2px]" />
                                                 Dashboard
                                             </Link>
                                         </Typography>
@@ -253,6 +295,7 @@ const Menubar = () => {
                         </div>
                     </div>
                 </Collapse>
+
             </Navbar>
         </>
     );

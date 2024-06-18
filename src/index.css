@@ -7,3 +7,10 @@
 body{
     font-family: "Roboto", sans-serif;
 }
+
+.dark-theme {
+    background-color: #3c3c3c;
+}
+.light-theme {
+    background-color: white;
+}

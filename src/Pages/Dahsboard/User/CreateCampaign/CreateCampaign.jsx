@@ -40,27 +40,27 @@ const CreateCampaign = () => {
                 <form onSubmit={handleSubmit(handleCreateCampaign)}>
 
                     <label className="block mt-3">Campaign Name</label>
-                    <input className="block px-5 py-2 bg-gray-50 rounded-md w-full my-1" type="text" placeholder="Donation Campaign Name" name="campaignName" {...register("campaignName", { required: true })} />
+                    <input className="block px-5 py-2 bg-blue-50 rounded-md w-full my-1" type="text" placeholder="Donation Campaign Name" name="campaignName" {...register("campaignName", { required: true })} />
                     {errors.campaignName && <span>This field is required</span>}
 
                     <label className="block mt-3">Campaign Image</label>
-                    <input className="block px-5 py-2 bg-gray-50 rounded-md w-full my-1" type="file" placeholder="Donation Pet Image" name="donationImage" {...register("donationImage", { required: true })} />
+                    <input className="block px-5 py-2 bg-blue-50 rounded-md w-full my-1" type="file" placeholder="Donation Pet Image" name="donationImage" {...register("donationImage", { required: true })} />
                     {errors.donationImage && <span>This field is required</span>}
 
                     <label className="block mt-3">Maximum Donation Amount</label>
-                    <input className="block px-5 py-2 bg-gray-50 rounded-md w-full my-1" type="number" placeholder="Maximum Donation Amount" name="maxDonationAmount" {...register("maxDonationAmount", { required: true })} />
+                    <input className="block px-5 py-2 bg-blue-50 rounded-md w-full my-1" type="number" placeholder="Maximum Donation Amount" name="maxDonationAmount" {...register("maxDonationAmount", { required: true })} />
                     {errors.maxDonationAmount && <span>This field is required</span>}
 
                     <label className="block mt-3">Last Date</label>
-                    <input className="block px-5 py-2 bg-gray-50 rounded-md w-full my-1" type="date" placeholder="Last Date" name="lastDate" {...register("lastDate", { required: true })} />
+                    <input className="block px-5 py-2 bg-blue-50 rounded-md w-full my-1" type="date" placeholder="Last Date" name="lastDate" {...register("lastDate", { required: true })} />
                     {errors.lastDate && <span>This field is required</span>}
 
                     <label className="block mt-3">Short Description</label>
-                    <textarea rows={2} className="block px-5 py-2 bg-gray-50 rounded-md w-full my-1" type="text" placeholder="Short Description" name="shortDescription" {...register("shortDescription", { required: true })} />
+                    <textarea rows={2} className="block px-5 py-2 bg-blue-50 rounded-md w-full my-1" type="text" placeholder="Short Description" name="shortDescription" {...register("shortDescription", { required: true })} />
                     {errors.shortDescription && <span>This field is required</span>}
 
                     <label className="block mt-3">Long Description</label>
-                    <textarea rows={5} className="block px-5 py-2 bg-gray-50 rounded-md w-full my-1" type="text" placeholder="Long Description" name="longDescription" {...register("longDescription", { required: true })} />
+                    <textarea rows={5} className="block px-5 py-2 bg-blue-50 rounded-md w-full my-1" type="text" placeholder="Long Description" name="longDescription" {...register("longDescription", { required: true })} />
                     {errors.longDescription && <span>This field is required</span>}
 
                     <div className="flex justify-center items-center mt-5">

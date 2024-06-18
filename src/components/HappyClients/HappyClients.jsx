@@ -10,7 +10,7 @@ const HappyClients = () => {
                 <p className="max-w-[500px] mx-auto text-center font-medium py-3"> Our greatest joy comes from the happy stories of our adopters. Here are a few heartwarming  found their perfect companions</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
-                <div className="flex flex-col bg-gray-50 rounded-lg shadow-lg p-8">
+                <div className="flex flex-col bg-blue-50 rounded-lg shadow-lg p-8">
                     <div className="flex justify-center">
                         <FaQuoteLeft className="text-4xl mb-5" />
                     </div>
@@ -34,7 +34,7 @@ const HappyClients = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col bg-gray-50 rounded-lg shadow-lg p-8">
+                <div className="flex flex-col bg-blue-50 rounded-lg shadow-lg p-8">
                     <div className="flex justify-center">
                         <FaQuoteLeft className="text-4xl mb-5" />
                     </div>
@@ -58,7 +58,7 @@ const HappyClients = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col bg-gray-50 rounded-lg shadow-lg p-8">
+                <div className="flex flex-col bg-blue-50 rounded-lg shadow-lg p-8">
                     <div className="flex justify-center">
                         <FaQuoteLeft className="text-4xl mb-5" />
                     </div>
@@ -82,7 +82,7 @@ const HappyClients = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col bg-gray-50 rounded-lg shadow-lg p-8">
+                <div className="flex flex-col bg-blue-50 rounded-lg shadow-lg p-8">
                     <div className="flex justify-center">
                         <FaQuoteLeft className="text-4xl mb-5" />
                     </div>
