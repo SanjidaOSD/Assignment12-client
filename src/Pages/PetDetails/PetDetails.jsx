@@ -74,7 +74,7 @@ const PetDetails = () => {
                     <p className="text-lg font-medium">{shortDescription}</p>
                     <p className="text-base mt-3">{longDescription}</p>
                     <div>
-                        <button onClick={open} className='w-[120px] block mt-5 hover:text-white hover:bg-gray-700 duration-300 bg-blue-50 px-5 text-center py-2 rounded-lg text-lg font-semibold'> Adopt </button>
+                        <button onClick={open} className='w-[120px] block mt-5 text-white hover:bg-gray-700 border-none outline-none duration-300 bg-gray-900 px-5 text-center py-2 rounded-lg text-lg font-semibold'> Adopt </button>
                     </div>
                     <div>
                         <Transition appear show={isOpen}>

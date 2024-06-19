@@ -6,7 +6,7 @@ const useAllDonationCampaigns = () => {
     const {data : AllDonationCampaigns = [], isLoading, refetch} = useQuery({
         queryKey :['AllDonationCampaigns'],
         queryFn : async()=>{
-            const {data} = await axiosPublic.get('/donation-campaign');
+            const {data} = await axiosPublic.get('/donationCampaigns');
             return data;
         }
     })

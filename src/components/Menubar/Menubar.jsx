@@ -71,7 +71,7 @@ const Menubar = () => {
 
     return (
         <>
-            <Navbar className="mx-auto container px-5 py-3 rounded-none shadow-none border-b">
+            <Navbar className="mx-auto container px-5 py-3 rounded-none shadow-none bg-transparent border-none">
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Typography
                         as="a"

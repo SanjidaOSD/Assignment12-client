@@ -25,7 +25,7 @@ const Slider = () => {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <div className='flex gap-10 flex-col md:flex-row justify-center items-center'>
+                    <div className='flex gap-10 flex-col md:flex-row justify-center items-center bg-white'>
                         <div className='w-[90%] md:w-1/2 flex flex-col justify-center px-16'>
                             <h1 className=' text-2xl md:text-3xl lg:text-5xl font-bold text-center md:text-start leading-[60px]'> <span className='font-extrabold text-blue-900'>Donate</span> to Your Favorite Pets</h1>
                             <p className='mt-5 mb-10 font-medium text-center md:text-start'>Donate to support my favorite pets affectionate, playful, and loyal companions that bring joy, comfort, and unconditional love to every home.</p>
@@ -40,7 +40,7 @@ const Slider = () => {
                 </SwiperSlide>
         
                 <SwiperSlide>
-                    <div className='flex gap-10 flex-col md:flex-row justify-center items-center'>
+                    <div className='flex gap-10 flex-col md:flex-row justify-center items-center bg-white'>
                         <div className='w-[90%] md:w-1/2 flex flex-col justify-center px-16'>
                             <h1 className=' text-2xl md:text-3xl lg:text-5xl font-bold text-center md:text-start leading-[60px]'> <span className='font-extrabold text-blue-900'>Adopt</span> Your Favorite Pets</h1>
                             <p className='mt-5 mb-10 font-medium text-center md:text-start'>Adopt a pet: Gain a loyal, loving companion who brings joy and comfort, enriching your life with endless affection and fun.</p>
@@ -55,7 +55,7 @@ const Slider = () => {
                 </SwiperSlide>
 
                 <SwiperSlide>
-                    <div className='flex gap-10 flex-col md:flex-row justify-center items-center'>
+                    <div className='flex gap-10 flex-col md:flex-row justify-center items-center bg-white'>
                         <div className='w-[90%] md:w-1/2 flex flex-col justify-center px-16'>
                             <h1 className=' text-2xl md:text-3xl lg:text-5xl font-bold text-center md:text-start leading-[60px]'> <span className='font-extrabold text-blue-900'>Create Campaign </span> For Donation To Pets</h1>
                             <p className='mt-5 mb-10 font-medium text-center md:text-start'>Adopt Love, Save Lives is a heartwarming initiative aimed at connecting abandoned pets with caring families by choosing adoption</p>

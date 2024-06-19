@@ -9,8 +9,10 @@ body{
 }
 
 .dark-theme {
-    background-color: #3c3c3c;
+    background-color: #484848;
+    color: rgb(209, 209, 209);
 }
 .light-theme {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
+    color : rgb(73, 73, 73)
 }

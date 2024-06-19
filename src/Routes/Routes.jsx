@@ -24,6 +24,8 @@ import MyDonations from "../Pages/Dahsboard/User/MyDonations/MyDonations";
 import AllPets from './../Pages/Dahsboard/Admin/AllPets/AllPets';
 import AllDonations from './../Pages/Dahsboard/Admin/AllDonations/AllDonations';
 import UpdateCampaign from "../Pages/Dahsboard/User/UpdateCampaign/UpdateCampaign";
+import PrivateRoute from "./PriveteRoute";
+import AdminRoute from "./AdminRoute";
 
 
 export const router = createBrowserRouter([
@@ -60,72 +62,72 @@ export const router = createBrowserRouter([
       },
       {
         path: '/pet-listing',
-        element: <Petlisting/>
+        element: <Petlisting />
       },
       {
         path: '/donation-campaigns',
-        element: <DonationCampaigns/>
+        element: <DonationCampaigns />
       },
       {
         path: '/pet-details/:id',
-        element: <PetDetails/>
+        element: <PrivateRoute><PetDetails /></PrivateRoute>
       },
       {
         path: '/campaign-details/:id',
-        element: <CampaignDetails/>
+        element: <PrivateRoute><CampaignDetails /></PrivateRoute>
       },
     ]
   },
   {
     path: '/dashboard',
-    element: <Dashboard />,
+    element: <PrivateRoute><Dashboard /></PrivateRoute>,
     children: [
       // ====== Users Routes ========
       {
         path: 'add-pet',
-        element: <AddPet />
+        element: <PrivateRoute><AddPet /></PrivateRoute>
       },
       {
         path: 'my-added-pets',
-        element: <MyAddedPets />
+        element: <PrivateRoute><MyAddedPets /></PrivateRoute>
       },
       {
         path: 'pet-update/:id',
-        element: <PetUpdate />
+        element: <PrivateRoute><PetUpdate /></PrivateRoute>
       },
       {
         path: 'adoption-request',
-        element: <AdoptionRequest/>
+        element: <PrivateRoute><AdoptionRequest /></PrivateRoute>
       },
       {
         path: 'create-campaign',
-        element: <CreateCampaign/>
+        element: <PrivateRoute><CreateCampaign /></PrivateRoute>
       },
       {
         path: 'my-campaign',
-        element: <MyCampaign/>
+        element: <PrivateRoute><MyCampaign /></PrivateRoute>
       },
       {
         path: 'update-campaign/:id',
-        element: <UpdateCampaign/>
+        element: <PrivateRoute><UpdateCampaign /></PrivateRoute>
       },
       {
         path: 'my-donations',
-        element: <MyDonations/>
+        element: <PrivateRoute><MyDonations /></PrivateRoute>
       },
 
       // ====== Admin Routes ========
       {
         path: 'users',
-        element: <Users />
+        element: <AdminRoute><Users /></AdminRoute>
       },
       {
         path: 'all-pets',
-        element: <AllPets/>
+        element: <AdminRoute><AllPets /></AdminRoute>
       },
       {
         path: 'all-donations',
-        element: <AllDonations/>
+        element: <AdminRoute><AllDonations /></AdminRoute>
       },
 
     ]

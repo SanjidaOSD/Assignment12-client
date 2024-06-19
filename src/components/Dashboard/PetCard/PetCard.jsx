@@ -13,7 +13,7 @@ const PetCard = ({ pet }) => {
             <div>
                 {
                     pet.petImageURL ?
-                        <img className='w-full h-[220px] object-cover rounded-lg' src={pet.petImageURL} alt="Pet Image" />
+                        <img className='w-full h-[220px] object-cover rounded-t-lg' src={pet.petImageURL} alt="Pet Image" />
                         :
                         <h1><Skeleton /></h1>
                 }
@@ -23,7 +23,7 @@ const PetCard = ({ pet }) => {
                 <h3 className='font-semibold text-lg py-2'> Pet Age : {pet.petAge || <Skeleton count={3} />} Years</h3>
                 <p className='flex gap-3 items-center font-semibold'> <FaLocationDot />  {pet.petLocation || ""}</p>
                 <div>
-                    <Link to={`/pet-details/${pet._id || ""}`}><button className='w-full block mt-5 hover:text-white hover:bg-gray-700 duration-300 bg-blue-50 px-5 text-center py-2 rounded-lg text-lg font-semibold'> See Details </button></Link>
+                    <Link to={`/pet-details/${pet._id || ""}`}><button className='w-full block mt-5 text-white hover:bg-gray-700 bg-gray-900 duration-300 px-5 text-center py-2 rounded-lg text-lg font-semibold'> See Details </button></Link>
                 </div>
             </div>
         </div>

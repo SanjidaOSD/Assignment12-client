@@ -111,7 +111,7 @@ const PetListing = () => {
                         </div>
                         {hasMore && (
                             <div ref={elementRef} className="text-center">
-                                <p>Loading more items...</p>
+                                <p className="text-lg font-semibold text-center mb-16">Loading more items...</p>
                             </div>
                         )}
                     </>

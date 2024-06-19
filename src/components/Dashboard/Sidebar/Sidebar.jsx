@@ -19,7 +19,7 @@ import UseAuth from '../../../Hook/UseAuth'
 
 const Sidebar = () => {
     const [isActive, setActive] = useState(false)
-    const {logout} = UseAuth()
+    const { logout } = UseAuth()
     const [isAdmin, isAdminLoading] = useAdmin()
     const handleToggle = () => {
         setActive(!isActive)
@@ -108,7 +108,66 @@ const Sidebar = () => {
                                                 }`
                                             }
                                         >
-                                            <span className='mx-4 font-medium flex items-center gap-3'> <BiSolidDonateHeart /> All Donations</span>
+                                            <span className='mx-4 font-medium flex items-center gap-3'> <BiSolidDonateHeart /> All Donations Campaigns</span>
+                                        </NavLink>
+                                        <hr className='border border-dashed border-gray-400 my-5'></hr>
+                                        <NavLink
+                                            to='/dashboard/add-pet'
+                                            className={({ isActive }) =>
+                                                `flex items-center px-4 py-2 my-1  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                                }`
+                                            }
+                                        >
+                                            <span className='mx-4 font-medium flex items-center gap-3'> <FiPlusCircle /> Add Pet</span>
+                                        </NavLink>
+                                        <NavLink
+                                            to='/dashboard/my-added-pets'
+                                            className={({ isActive }) =>
+                                                `flex items-center px-4 py-2 my-1  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                                }`
+                                            }
+                                        >
+                                            <span className='mx-4 font-medium flex items-center gap-3'> <MdPets /> My Added Pets</span>
+                                        </NavLink>
+                                        <NavLink
+                                            to='/dashboard/adoption-request'
+                                            className={({ isActive }) =>
+                                                `flex items-center px-4 py-2 my-1  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                                }`
+                                            }
+                                        >
+                                            <span className='mx-4 font-medium flex items-center gap-3'> <IoArrowUndoOutline /> Adoption Request
+                                            </span>
+                                        </NavLink>
+                                        <NavLink
+                                            to='/dashboard/create-campaign'
+                                            className={({ isActive }) =>
+                                                `flex items-center px-4 py-2 my-1  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                                }`
+                                            }
+                                        >
+                                            <span className='mx-4 font-medium flex items-center gap-3'> <LuFileEdit /> Create Campaign
+                                            </span>
+                                        </NavLink>
+                                        <NavLink
+                                            to='/dashboard/my-campaign'
+                                            className={({ isActive }) =>
+                                                `flex items-center px-4 py-2 my-1  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                                }`
+                                            }
+                                        >
+                                            <span className='mx-4 font-medium flex items-center gap-3'> <MdFormatListBulleted /> My Campaigns
+                                            </span>
+                                        </NavLink>
+                                        <NavLink
+                                            to='/dashboard/my-donations'
+                                            className={({ isActive }) =>
+                                                `flex items-center px-4 py-2 my-1  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                                }`
+                                            }
+                                        >
+                                            <span className='mx-4 font-medium flex items-center gap-3'> <BiSolidDonateHeart /> My Donations
+                                            </span>
                                         </NavLink>
                                     </>
                                     :
