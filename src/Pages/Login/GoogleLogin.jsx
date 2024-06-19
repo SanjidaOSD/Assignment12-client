@@ -23,8 +23,7 @@ const GoogleLogin = () => {
             role : 'user'
           }
           axiosPublic.post('/users', userInfo)
-            .then(res => {
-              console.log(res.data);
+            .then(()=> {
               navigate('/');
             })
           navigate(from)

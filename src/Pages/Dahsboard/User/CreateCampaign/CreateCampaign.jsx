@@ -35,9 +35,7 @@ const CreateCampaign = () => {
                 donators: [] 
             };
             const { data: response } = await axiosSecure.post('/create-campaign', newCampaign);
-            console.log(response);
             if (response.insertedId) {
-                console.log("Data : ", response);
                 toast.success('Campaign Created Successfully');
             }
         } catch (err) {

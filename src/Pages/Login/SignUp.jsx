@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 import UseAuth from "../../Hook/UseAuth";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { Button } from "@material-tailwind/react";
+import uploadImage from "../../utility/utility";
 
 const SignUp = () => {
     const axiosPublic = useAxiosPublic()
@@ -28,9 +29,8 @@ const SignUp = () => {
     const from = '/login';
 
 
-    const onSubmit = data => {
+    const onSubmit = async (data) => {
 
-        //  console.log(data)
         const { email, password, name, photo } = data;
 
         if (password.length < 6) {
@@ -49,35 +49,36 @@ const SignUp = () => {
             return;
         }
 
-
         setRegisterError('');
         setSuccess('');
 
-        // create user and updateProfile
-        createUser(email, password)
-            .then(async(result) => {
-                await updateUserProfile(name, photo)
-                const userInfo = {
-                    email: result.user?.email,
-                    name: name,
-                    photo: photo,
-                    role: 'user'
-                }
-                axiosPublic.post('/users', userInfo)
-                    .then(res => {
-                        console.log(res.data);
-                        navigate('/');
-                    })
-                toast.success('User created successfully')
-                navigate(from)
-            })
-            .catch(error => {
-                console.log(error)
-                setRegisterError(error.message);
-                toast.error('Failed to sign in. Please try again.');
+        try {
+            const image = await uploadImage(photo[0]);
+            // create user and updateProfile
+            createUser(email, password)
+                .then(async (result) => {
+                    await updateUserProfile(name, image)
+                    const userInfo = {
+                        email: result.user?.email,
+                        name: name,
+                        photo: image,
+                        role: 'user'
+                    }
+                    axiosPublic.post('/users', userInfo)
+                        .then(()=> {
+                            navigate('/');
+                        })
+                    toast.success('User created successfully')
+                    navigate(from)
+                })
+                .catch(error => {
+                    setRegisterError(error.message);
+                    toast.error('Failed to sign in. Please try again.');
 
-            })
-
+                })
+        } catch (err) {
+            toast.error('Sign in failed')
+        }
     }
 
     return (
@@ -101,9 +102,9 @@ const SignUp = () => {
                     </div>
                     <div className="form-control">
                         <label className="label mt-5 block">
-                            <span className="label-text">Photo URL</span>
+                            <span className="label-text">Photo</span>
                         </label>
-                        <input type="photo" placeholder="photo" name="photo" className="px-5 w-full py-2 mt-1 block border border-gray-100"
+                        <input type="file" placeholder="photo" name="photo" className="px-5 w-full py-2 mt-1 block border border-gray-100"
                             {...register("photo")}
                         />
                         {errors.photo && <span className="text-red-800">This field is required</span>}

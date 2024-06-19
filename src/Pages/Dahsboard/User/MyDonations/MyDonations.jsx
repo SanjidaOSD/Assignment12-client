@@ -29,7 +29,6 @@ const MyDonations = () => {
             }
         }catch(err){
             toast.success("Refund apply failed")
-            console.log(err);
         }
     }
 

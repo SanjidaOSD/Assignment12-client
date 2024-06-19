@@ -27,17 +27,12 @@ const EmailLogin = () => {
         const { email, password } = data;
 
         signInUser(email, password)
-            .then(result => {
-                console.log(result.user);
+            .then(()=> {
                 toast.success('Logged in successfully')
-
                 navigate(location?.state ? location.state : '/');
-
-                
             })
             .catch(()=> {
                 toast.error('Failed to sign in. Please try again.');
-
             })
     }
 

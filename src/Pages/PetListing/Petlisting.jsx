@@ -1,9 +1,9 @@
-import useAxiosSecure from "../../Hook/useAxiosSecure";
 import { Helmet } from "react-helmet";
 import PetCard from "../../components/Dashboard/PetCard/PetCard";
 import { useEffect, useRef, useState } from "react";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import useAxiosSecure from "../../Hook/useAxiosSecure";
 
 const PetListing = () => {
     const axiosSecure = useAxiosSecure();
@@ -12,18 +12,17 @@ const PetListing = () => {
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(0);
     const [search, setSearch] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState("");
     const elementRef = useRef(null);
 
     const fetchMoreItems = async () => {
         setIsLoading(true);
         try {
-            const { data } = await axiosSecure.get(`/pets?search=${search}&limit=6&skip=${page * 6}`);
+            const { data } = await axiosSecure.get(`/pets?search=${search}&category=${selectedCategory}&limit=6&skip=${page * 6}`);
             if (data.length === 0) {
                 setHasMore(false);
             } else {
-                // Sort data by date in descending order
-                const sortedData = data.sort((a, b) => new Date(b.date) - new Date(a.date));
-                setPets((previousPets) => [...previousPets, ...sortedData]);
+                setPets((previousPets) => [...previousPets, ...data]);
                 setPage((previousPage) => previousPage + 1);
             }
         } catch (error) {
@@ -57,13 +56,17 @@ const PetListing = () => {
         setPets([]);
         setPage(0);
         setHasMore(true);
-        fetchMoreItems(); 
-    }, [search]);
+        fetchMoreItems();
+    }, [search, selectedCategory]);
 
     const handleSearch = (e) => {
         e.preventDefault();
         const searchValue = e.target.search.value || "";
         setSearch(searchValue);
+    };
+
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value);
     };
 
     return (
@@ -75,6 +78,16 @@ const PetListing = () => {
             <div className="pb-8">
                 <form onSubmit={handleSearch} className="flex w-full justify-center items-center gap-5">
                     <div>
+                        <select name="category" value={selectedCategory} onChange={handleCategoryChange} className="block max-w-[260px] mx-auto py-2 px-5 bg-blue-50 font-semibold border rounded-lg">
+                            <option value="">All Categories</option>
+                            <option value="dog">Dog</option>
+                            <option value="cat">Cat</option>
+                            <option value="bird">Bird</option>
+                            <option value="fish">Fish</option>
+                            <option value="rabbits">Rabbits</option>
+                        </select>
+                    </div>
+                    <div>
                         <input type="text" name="search" className="block max-w-[260px] mx-auto py-2 px-5 bg-blue-50 font-semibold border rounded-lg" />
                     </div>
                     <div>
@@ -85,24 +98,11 @@ const PetListing = () => {
             {
                 isLoading && page === 0 ? (
                     <div className="container mx-auto px-5 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pb-16">
-                        <div>
-                            <Skeleton height={200} />
-                        </div>
-                        <div>
-                            <Skeleton height={200} />
-                        </div>
-                        <div>
-                            <Skeleton height={200} />
-                        </div>
-                        <div>
-                            <Skeleton height={200} />
-                        </div>
-                        <div>
-                            <Skeleton height={200} />
-                        </div>
-                        <div>
-                            <Skeleton height={200} />
-                        </div>
+                        {[...Array(6)].map((_, index) => (
+                            <div key={index}>
+                                <Skeleton height={200} />
+                            </div>
+                        ))}
                     </div>
                 ) : (
                     <>

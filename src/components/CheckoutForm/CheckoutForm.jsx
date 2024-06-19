@@ -20,7 +20,6 @@ const CheckoutForm = ({ amount, campaignData }) => {
     useEffect(() => {
         axiosSecure.post('/payment-intent', { fees: amount })
             .then(res => {
-                console.log(res.data);
                 setClientSecret(res.data.clientSecret);
             })
             .catch(err => {
@@ -105,7 +104,6 @@ const CheckoutForm = ({ amount, campaignData }) => {
                 toast.error('Payment Error');
             }
         } catch (err) {
-            console.log(err);
             toast.error('Payment Failed');
         } finally {
             setLoading(false);

@@ -41,7 +41,6 @@ const UpdateCampaign = () => {
                 donationImageURL: campPhoto 
             };
             const { data } = await axiosSecure.patch(`/update-campaign/${campaignData._id}`, updateCampaign);
-            console.log(data);
             if (data.modifiedCount > 0) {
                 toast.success('Campaign Updated Successfully');
             }

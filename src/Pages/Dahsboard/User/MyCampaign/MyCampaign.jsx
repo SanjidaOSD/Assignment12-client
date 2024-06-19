@@ -21,25 +21,21 @@ const MyCampaign = () => {
 
     const handlePause = async(id) =>{
         try{
-            const {data} = await axiosSecure.patch(`/pause-true/${id}`)
-            console.log(data);
+            await axiosSecure.patch(`/pause-true/${id}`)
             refetch()
             toast.success('Campaign Paused Successfully')
         }catch(err){
             toast.success('Campaign Pause Failed')
-            console.log(err);
         }
     }
 
     const handleActive = async(id) =>{
         try{
-            const {data} = await axiosSecure.patch(`/pause-false/${id}`)
-            console.log(data);
+            await axiosSecure.patch(`/pause-false/${id}`)
             refetch()
             toast.success('Campaign Activate Successfully')
         }catch(err){
             toast.success('Campaign Acivate Failed')
-            console.log(err);
         }
     }
 

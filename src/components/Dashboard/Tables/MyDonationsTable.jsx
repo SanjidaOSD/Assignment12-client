@@ -4,8 +4,6 @@ import DataTable from 'react-data-table-component';
 
 const MyDonationsTable = ({MyDonationsData, handleRefund}) => {
 
-    console.log(MyDonationsData);
-
     const columns = [
         {
             name: 'ID',

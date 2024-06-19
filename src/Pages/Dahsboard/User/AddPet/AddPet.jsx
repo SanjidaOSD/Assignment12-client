@@ -27,7 +27,6 @@ const AddPet = () => {
                 toast.success("Pet added successfully");
             }
         } catch (err) {
-            console.log(err);
             toast.error("Pet added failed");
         }
     };
